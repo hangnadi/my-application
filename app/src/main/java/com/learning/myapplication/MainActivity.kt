@@ -6,7 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -42,6 +45,22 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         )
         Button(onClick = { /* TODO */ }) {
             Text("Click me")
+        }
+        MyList()
+    }
+}
+
+@Composable
+fun MyList() {
+    val items = listOf("Banana", "Apple", "Grape", "Durian")
+    LazyColumn {
+        items(items) { item ->
+            Text(
+                text = item,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
         }
     }
 }
