@@ -8,19 +8,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
+import com.learning.myapplication.navigation.AppNavGraph
 import com.learning.myapplication.ui.theme.MyApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
+                val modifier = Modifier.fillMaxSize()
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainView()
+                    val navController = rememberNavController()
+                    AppNavGraph((navController))
                 }
             }
         }
